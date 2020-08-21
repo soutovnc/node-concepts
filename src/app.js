@@ -60,6 +60,10 @@ app.delete("/repositories/:id", (request, response) => {
   if (repoIndex < 0) {
     return response.status(400).json({ error: 'Repository not found!' });
   };
+
+  repositories.splice(repoIndex, 1);
+
+  return response.status(204).send();
 });
 
 app.post("/repositories/:id/like", (request, response) => {
@@ -76,6 +80,5 @@ app.post("/repositories/:id/like", (request, response) => {
   return response.json(repository);
 
 });
-
 
 module.exports = app;
